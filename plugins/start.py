@@ -122,8 +122,8 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(text="⚡Join Channel 1⚡", url=client.invitelink1),
-            InlineKeyboardButton(text="⚡Join Channel 2⚡", url=client.invitelink2),
+            InlineKeyboardButton(text="⚡Join Channel 1⚡", url="https://t.me/attack_on_titan_tamildub1"),
+            InlineKeyboardButton(text="⚡Join Channel 2⚡", url="https://t.me/solo_levelingseason2_t"),
         ],
         [
             InlineKeyboardButton(text="⚡Join Channel 3⚡", url=client.invitelink3),
