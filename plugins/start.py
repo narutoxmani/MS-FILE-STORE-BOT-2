@@ -1,8 +1,3 @@
-#(©)CodeXBotz
-
-
-
-
 import os
 import asyncio
 from pyrogram import Client, filters, __version__
@@ -16,8 +11,6 @@ from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user
 
 
-
-
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
@@ -26,8 +19,9 @@ async def start_command(client: Client, message: Message):
             await add_user(id)
         except:
             pass
+
     text = message.text
-    if len(text)>7:
+    if len(text) > 7:
         try:
             base64_string = text.split(" ", 1)[1]
         except:
@@ -41,7 +35,7 @@ async def start_command(client: Client, message: Message):
             except:
                 return
             if start <= end:
-                ids = range(start,end+1)
+                ids = range(start, end + 1)
             else:
                 ids = []
                 i = start
@@ -55,6 +49,7 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
+
         temp_msg = await message.reply("Please wait...")
         try:
             messages = await get_messages(client, ids)
@@ -64,9 +59,11 @@ async def start_command(client: Client, message: Message):
         await temp_msg.delete()
 
         for msg in messages:
-
             if bool(CUSTOM_CAPTION) & bool(msg.document):
-                caption = CUSTOM_CAPTION.format(previouscaption = "" if not msg.caption else msg.caption.html, filename = msg.document.file_name)
+                caption = CUSTOM_CAPTION.format(
+                    previouscaption="" if not msg.caption else msg.caption.html,
+                    filename=msg.document.file_name
+                )
             else:
                 caption = "" if not msg.caption else msg.caption.html
 
@@ -76,11 +73,23 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                await msg.copy(
+                    chat_id=message.from_user.id,
+                    caption=caption,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=reply_markup,
+                    protect_content=PROTECT_CONTENT
+                )
                 await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                await msg.copy(
+                    chat_id=message.from_user.id,
+                    caption=caption,
+                    parse_mode=ParseMode.HTML,
+                    reply_markup=reply_markup,
+                    protect_content=PROTECT_CONTENT
+                )
             except:
                 pass
         return
@@ -88,78 +97,92 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("😊 About Me", callback_data="about"),
+                    InlineKeyboardButton("🔒 Close", callback_data="close")
                 ]
             ]
         )
         await message.reply_text(
-            text = START_MSG.format(
-                first = message.from_user.first_name,
-                last = message.from_user.last_name,
-                username = None if not message.from_user.username else '@' + message.from_user.username,
-                mention = message.from_user.mention,
-                id = message.from_user.id
+            text=START_MSG.format(
+                first=message.from_user.first_name,
+                last=message.from_user.last_name,
+                username=None if not message.from_user.username else '@' + message.from_user.username,
+                mention=message.from_user.mention,
+                id=message.from_user.id
             ),
-            reply_markup = reply_markup,
-            disable_web_page_preview = True,
-            quote = True
+            reply_markup=reply_markup,
+            disable_web_page_preview=True,
+            quote=True
         )
         return
 
-    
-#=====================================================================================##
 
-WAIT_MSG = """"<b>Processing ...</b>"""
+#=====================================================================================#
+WAIT_MSG = """<b>Processing ...</b>"""
 
-REPLY_ERROR = """<code>Use this command as a replay to any telegram message with out any spaces.</code>"""
+REPLY_ERROR = """<code>Use this command as a reply to any Telegram message without any spaces.</code>"""
+#=====================================================================================#
 
-#=====================================================================================##
 
-    
-    
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(text="⚡Join Channel 1⚡", url=client.invitelink1),
-            InlineKeyboardButton(text="⚡Join Channel 2⚡", url=client.invitelink2),
-        ],
-        [
-            InlineKeyboardButton(text="⚡Join Channel 3⚡", url=client.invitelink3),
-            InlineKeyboardButton(text="⚡Join Channel 4⚡", url=client.invitelink4),
-        ]
-    ]
+    # Replace with your actual Telegram channel usernames
+    channel1 = "attack_on_titan_tamildub1"  # Example: "AnimeMovies"
+    channel2 = "solo_levelingseason2_t"  # Example: "AnimeUpdates"
+    channel3 = "dubbedmovies_x3"  # Example: "AnimeNews"
+    channel4 = "sololevelingseason2_hindhi"  # Example: "AnimeCommunity"
+
     try:
-        buttons.append(
-            [
-                InlineKeyboardButton(
-                    text = 'Try again 😴',
-                    url = f"https://t.me/{client.username}?start={message.command[1]}"
-                )
-            ]
-        )
+        chat1 = await client.get_chat(channel1)
+        chat2 = await client.get_chat(channel2)
+        chat3 = await client.get_chat(channel3)
+        chat4 = await client.get_chat(channel4)
+
+        invite_link1 = chat1.invite_link
+        invite_link2 = chat2.invite_link
+        invite_link3 = chat3.invite_link
+        invite_link4 = chat4.invite_link
+    except Exception as e:
+        await message.reply_text(f"Error getting invite links: {e}")
+        return
+
+    buttons = [
+        [InlineKeyboardButton(text="⚡Join Channel 1⚡", url=invite_link1),
+         InlineKeyboardButton(text="⚡Join Channel 2⚡", url=invite_link2)],
+        [InlineKeyboardButton(text="⚡Join Channel 3⚡", url=invite_link3),
+         InlineKeyboardButton(text="⚡Join Channel 4⚡", url=invite_link4)]
+    ]
+
+    try:
+        buttons.append([
+            InlineKeyboardButton(
+                text='Try again 😴',
+                url=f"https://t.me/{client.username}?start={message.command[1]}"
+            )
+        ])
     except IndexError:
         pass
 
     await message.reply(
-        text = FORCE_MSG.format(
-                first = message.from_user.first_name,
-                last = message.from_user.last_name,
-                username = None if not message.from_user.username else '@' + message.from_user.username,
-                mention = message.from_user.mention,
-                id = message.from_user.id
-            ),
-        reply_markup = InlineKeyboardMarkup(buttons),
-        quote = True,
-        disable_web_page_preview = True
+        text=FORCE_MSG.format(
+            first=message.from_user.first_name,
+            last=message.from_user.last_name,
+            username=None if not message.from_user.username else '@' + message.from_user.username,
+            mention=message.from_user.mention,
+            id=message.from_user.id
+        ),
+        reply_markup=InlineKeyboardMarkup(buttons),
+        quote=True,
+        disable_web_page_preview=True
     )
+
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
     users = await full_userbase()
     await msg.edit(f"{len(users)} users are using this bot")
+
 
 @Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
 async def send_text(client: Bot, message: Message):
