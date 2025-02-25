@@ -1,4 +1,4 @@
-# File sharing Bot modified by Mayhem Bots
+# File sharing Bot modified by MS Bots
 
 <p align="center">
 
@@ -6,9 +6,7 @@
 Telegram Bot to store Posts and Documents and it can Access by Special Links.
 I Guess This Will Be Usefull For Many People.....😇. 
 
-##
-
-**If you need any more modes in repo or If you find out any bugs, mention in [@mayhem_support ](https://www.telegram.dog/mayhem_support)**
+#
 
 
 
@@ -109,17 +107,11 @@ stats - checking your bot uptime
 
 * `{uptime}` - Bot Uptime
 
-
-## Support   
-Join Our [Telegram Group](https://www.telegram.dog/Mayhem_Support) For Support/Assistance And Our [Channel](https://www.telegram.dog/Mayhem_Bots) For Updates.   
+.   
    
 Report Bugs, Give Feature Requests There..   
 
-### Credits
 
-- Thanks To Dan For His Awsome [Libary](https://github.com/pyrogram/pyrogram)
-- Our Support Group Members
-- @Eren_is_Yeager For Adding Four Fsub
 
 ### Licence
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
