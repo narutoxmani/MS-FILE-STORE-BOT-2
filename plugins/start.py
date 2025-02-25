@@ -129,8 +129,6 @@ async def not_joined(client: Client, message: Message):
     # Replace with your actual Telegram channel usernames
     channel1 = "attack_on_titan_tamildub1"  # Example: "AnimeMovies"
     channel2 = "solo_levelingseason2_t"  # Example: "AnimeUpdates"
-    channel3 = "dubbedmovies_x3"  # Example: "AnimeNews"
-    channel4 = "sololevelingseason2_hindhi"  # Example: "AnimeCommunity"
 
     try:
         chat1 = await client.get_chat(channel1)
