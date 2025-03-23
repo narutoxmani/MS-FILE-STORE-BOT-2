@@ -128,8 +128,8 @@ REPLY_ERROR = """<code>Use this command as a reply to any Telegram message witho
 async def not_joined(client: Client, message: Message):
     # Replace with your actual Telegram channel usernames
     channel1 = "attack_on_titan_tamildub1"  # Example: "AnimeMovies"
-    channel2 = "solo_levelingseason2_t"  # Example: "AnimeUpdates"
-    channel3 = "dubbedmovies_x3"  # Example: "AnimeNews"
+    channel2 = "sololeveling_tamil_season2"  # Example: "AnimeUpdates"
+    channel3 = "mj_movies_studio"  # Example: "AnimeNews"
     channel4 = "sololevelingseason2_hindhi"  # Example: "AnimeCommunity"
 
     try:
